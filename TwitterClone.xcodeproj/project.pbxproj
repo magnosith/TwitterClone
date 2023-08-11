@@ -22,8 +22,8 @@
 		3F967EF92A5E15DB00D47D56 /* FeedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F967EF82A5E15DB00D47D56 /* FeedController.swift */; };
 		3F967EFB2A5E164500D47D56 /* ExploreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F967EFA2A5E164500D47D56 /* ExploreController.swift */; };
 		3F967EFD2A5E168B00D47D56 /* NotificationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F967EFC2A5E168B00D47D56 /* NotificationsController.swift */; };
-		3F967EFF2A5E16A400D47D56 /* ConversationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F967EFE2A5E16A400D47D56 /* ConversationsController.swift */; };
 		3F967F012A5E432B00D47D56 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F967F002A5E432B00D47D56 /* Extensions.swift */; };
+		D0790CFE2A82F1120064DEFA /* ConversationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0790CFD2A82F1120064DEFA /* ConversationsController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,8 +63,8 @@
 		3F967EF82A5E15DB00D47D56 /* FeedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedController.swift; sourceTree = "<group>"; };
 		3F967EFA2A5E164500D47D56 /* ExploreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreController.swift; sourceTree = "<group>"; };
 		3F967EFC2A5E168B00D47D56 /* NotificationsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsController.swift; sourceTree = "<group>"; };
-		3F967EFE2A5E16A400D47D56 /* ConversationsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsController.swift; sourceTree = "<group>"; };
 		3F967F002A5E432B00D47D56 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		D0790CFD2A82F1120064DEFA /* ConversationsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,7 +172,7 @@
 				3F967EF82A5E15DB00D47D56 /* FeedController.swift */,
 				3F967EFA2A5E164500D47D56 /* ExploreController.swift */,
 				3F967EFC2A5E168B00D47D56 /* NotificationsController.swift */,
-				3F967EFE2A5E16A400D47D56 /* ConversationsController.swift */,
+				D0790CFD2A82F1120064DEFA /* ConversationsController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -339,7 +339,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F967EFD2A5E168B00D47D56 /* NotificationsController.swift in Sources */,
-				3F967EFF2A5E16A400D47D56 /* ConversationsController.swift in Sources */,
 				3F70250F2A81A25800E52426 /* Utilities.swift in Sources */,
 				3F967EC12A5E10CA00D47D56 /* AppDelegate.swift in Sources */,
 				3F967F012A5E432B00D47D56 /* Extensions.swift in Sources */,
@@ -348,6 +347,7 @@
 				3F967EC32A5E10CA00D47D56 /* SceneDelegate.swift in Sources */,
 				3F967EF72A5E13F600D47D56 /* MainTabController.swift in Sources */,
 				3F70250D2A81954100E52426 /* RegistrationController.swift in Sources */,
+				D0790CFE2A82F1120064DEFA /* ConversationsController.swift in Sources */,
 				3F967EF92A5E15DB00D47D56 /* FeedController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -528,11 +528,13 @@
 				DEVELOPMENT_TEAM = X6BCZG26RH;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TwitterClone/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -556,11 +558,13 @@
 				DEVELOPMENT_TEAM = X6BCZG26RH;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TwitterClone/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
