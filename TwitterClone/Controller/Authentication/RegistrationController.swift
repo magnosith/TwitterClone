@@ -6,10 +6,15 @@
 //
 
 import UIKit
+import Firebase
 
-class RegistrationController: UIViewController {
+
+class RegistrationController: UIViewController, UINavigationControllerDelegate {
     
     //MARK: - PROPERTIES
+    
+    private let imagePicker = UIImagePickerController()
+    private var imageProfile: UIImage?
     
     private let plusButton: UIButton = {
         let button = UIButton(type: .system)
@@ -72,7 +77,7 @@ class RegistrationController: UIViewController {
         button.heightAnchor.constraint(equalToConstant: 50).isActive = true
         button.layer.cornerRadius = 5
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
-        button.addTarget(self, action: #selector(handleGoHome), for: .touchUpInside)
+        button.addTarget(self, action: #selector(handleRegistration), for: .touchUpInside)
         return button
     }()
     
@@ -92,12 +97,27 @@ class RegistrationController: UIViewController {
     
     
     //MARK: - SELECTORS
-    @objc func handleGoHome(){
-        print("Go!")
+    @objc func handleRegistration(){
+        
+        guard let profileImage = imageProfile else {
+            print("DEBUG: Photo selected a profile image..")
+            return
+        }
+        
+        guard let email = emailTextField.text else {return}
+        guard let password = passwordTextField.text else {return}
+        guard let fullName = fullNameTextField.text else {return}
+        guard let userName = userNameTextField.text else {return}
+        let credentials = AuthCredentials(email: email, password: password, fullname: fullName, username: userName, profileImage: profileImage)
+        
+        AuthService.shared.registerUser(credentials: credentials) { (error, ref) in
+            print("DEBUG: Sign up successful...")
+            print("DEBUG: Handle update user interface here...")
+        }
     }
     
     @objc func handleAddProfilePhoto() {
-        print("changed photo")
+        present(imagePicker, animated: true, completion: nil)
     }
     
     @objc func handleShowLogIn(){
@@ -109,6 +129,9 @@ class RegistrationController: UIViewController {
     //MARK: HELPERS
     func configureUI(){
         view.backgroundColor = .twitterBlue
+        
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true
         
         view.addSubview(plusButton)
         plusButton.centerX(inView: view, topAnchor: view.safeAreaLayoutGuide.topAnchor)
@@ -128,5 +151,28 @@ class RegistrationController: UIViewController {
     }
     
     
+    
+}
+
+
+//MARK: - UIImagePickerControllerDelegate
+
+extension RegistrationController: UIImagePickerControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let profileImage = info[.editedImage] as? UIImage else {return}
+        self.imageProfile = profileImage
+        
+        plusButton.layer.cornerRadius = 128/2
+        plusButton.layer.masksToBounds = true
+        plusButton.imageView?.contentMode = .scaleAspectFill
+        plusButton.imageView?.clipsToBounds = true
+        plusButton.layer.borderColor = UIColor.white.cgColor
+        plusButton.layer.borderWidth = 3
+        
+        self.plusButton.setImage(profileImage.withRenderingMode(.alwaysOriginal), for: .normal)
+        dismiss(animated: true, completion: nil)
+        
+    }
     
 }
