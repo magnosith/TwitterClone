@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class LoginController: UIViewController {
     
@@ -32,12 +33,16 @@ class LoginController: UIViewController {
     
     private var emailTextField: UITextField = {
         let tf = Utilities().textField(withPlaceholder: "Email")
+        tf.autocapitalizationType = .none
+        tf.autocorrectionType = .no
         return tf
     }()
     
     private var passwordTextField: UITextField = {
         let tf = Utilities().textField(withPlaceholder: "Password")
         tf.isSecureTextEntry = true
+        tf.autocapitalizationType = .none
+        tf.autocorrectionType = .no
         return tf
     }()
     
@@ -69,11 +74,33 @@ class LoginController: UIViewController {
     
     //MARK: - SELECTORS
     @objc func handleLogin (){
-        print("Clicked Log In Button")
+        guard let email = emailTextField.text else {return}
+        guard let password = passwordTextField.text else {return}
+        
+        AuthService.shared.logUserIn(withEmail: email, password: password) { error, success in
+            if let error = error {
+                print("DEBUG: Error Logging in \(error.localizedDescription)")
+                return
+            }
+            
+            guard let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow }) else {return}
+            guard let tab = window.rootViewController as? MainTabController else {return}
+            
+            tab.authenticationUserConfigurationUI()
+         //   self.dismiss(animated: true, completion: nil)
+            
+            DispatchQueue.main.sync {
+                self.view.window?.rootViewController = tab
+            }
+            self.dismiss(animated: true, completion: nil)
+        }
+        
+       
+        
     }
     
     @objc func handleShowSignUp (){
-       let controller = RegistrationController()
+        let controller = RegistrationController()
         navigationController?.pushViewController(controller, animated: true)
     }
     

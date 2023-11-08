@@ -50,12 +50,16 @@ class RegistrationController: UIViewController, UINavigationControllerDelegate {
     
     private var emailTextField: UITextField = {
         let tf = Utilities().textField(withPlaceholder: "Email")
+        tf.autocapitalizationType = .none
+        tf.autocorrectionType = .no
         return tf
     }()
     
     private var passwordTextField: UITextField = {
         let tf = Utilities().textField(withPlaceholder: "Password")
         tf.isSecureTextEntry = true
+        tf.autocapitalizationType = .none
+        tf.autocorrectionType = .no
         return tf
     }()
     
@@ -66,6 +70,8 @@ class RegistrationController: UIViewController, UINavigationControllerDelegate {
     
     private var userNameTextField: UITextField = {
         let tf = Utilities().textField(withPlaceholder: "Username")
+        tf.autocapitalizationType = .none
+        tf.autocorrectionType = .no
         return tf
     }()
     

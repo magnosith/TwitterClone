@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
 
 struct AuthCredentials {
     let email: String
@@ -18,6 +19,20 @@ struct AuthCredentials {
 
 struct AuthService {
     static let shared = AuthService()
+    
+    func logUserIn(withEmail email: String, password: String, completion: @escaping (Error?, Bool) -> Void){
+        Auth.auth().signIn(withEmail: email, password: password){ (result, error) in
+            if let error = error {
+                print("DEBUG: Error logging in.... \(error.localizedDescription)")
+                completion(error, false)
+                return
+            }
+
+            print("DEBUG: Successful log in...")
+        }
+    }
+    
+    
     
     func registerUser(credentials: AuthCredentials, completition: @escaping(Error?, DatabaseReference) -> Void) {
         
